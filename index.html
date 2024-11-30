@@ -367,45 +367,52 @@ Later, I discovered that a team member had offered them a lower rate, leading us
                 </div>
                 <div class="col-md-6 mb-4">
                     <h4>Contact Form</h4>
-                    <form action="">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Your Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Your Email">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
-                        </div>
-                        <button type="submit" onclick="send()" class="btn btn-dark" style="background:linear-gradient(45deg, black, blue);">Send Message</button>
-                    </form>
-                </div>
-            </div>
+                   <!-- Include the form in your HTML file -->
+<form id="contactForm">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="Your Name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="Your Email">
+    </div>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark" style="background:linear-gradient(45deg, black, blue);">Send Message</button>
+</form>
+
+<!-- Add the following JavaScript to handle form submission and sending data to WhatsApp -->
+<script>
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Capture the form data
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var message = document.getElementById('message').value;
+
+        // Construct the WhatsApp message
+        var whatsappMessage = 'Name: ' + name + '%0A' +
+                              'Email: ' + email + '%0A' +
+                              'Message: ' + message;
+
+        // Your WhatsApp number in the format: country code + number (e.g., +919876543210 for India)
+        var whatsappNumber = '+919382085005';
+
+        // Create the WhatsApp URL
+        var whatsappURL = 'https://wa.me/' + whatsappNumber + '?text=' + whatsappMessage;
+
+        // Open WhatsApp with the message in a new tab
+        window.open(whatsappURL, '_blank');
+    });
+</script>
+        </div>
+        </div>
         </div>
     </section>
-    <script>
-        // Initialize EmailJS
-        (function(){
-            emailjs.init("YOUR_USER_ID"); // Replace with your user ID
-        })();
-
-        // Handle form submission
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-
-            // Send the form data using EmailJS
-            emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-                .then(function() {
-                    alert('Email sent successfully!');
-                }, function(error) {
-                    alert('Failed to send email. Please try again later.');
-                    console.error('Error:', error);
-                });
-        });
-    </script>
     <!-- Footer --><!-- copyed -->
     <footer class="py-4 bg-dark text-white">
         <div class="container text-center">
