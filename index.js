@@ -1,5 +1,5 @@
 //index.js
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+document.getElementById('contactForm').addEventListener('submit', function(e) {
 	e.preventDefault();
 	console.log(this);
 	emailjs.sendForm('service_dmcekjp','template_akz2w71',this).then(function(result){
